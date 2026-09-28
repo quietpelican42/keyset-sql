@@ -84,10 +84,12 @@ const { where, orderBy, params, reversed } = keyset({
   cursor: { before: decodeCursor(cursor) },
   dialect: 'postgres',
 });
-const rows = await client.query(`SELECT * FROM posts WHERE ${where} ORDER BY ${orderBy} LIMIT $2`, [
-  ...params,
-  pageSize,
-]);
+// params can hold several values (one per compared column per OR arm), so the
+// LIMIT placeholder comes after all of them.
+const { rows } = await client.query(
+  `SELECT * FROM posts WHERE ${where} ORDER BY ${orderBy} LIMIT $${params.length + 1}`,
+  [...params, pageSize],
+);
 if (reversed) rows.reverse();
 ```
 

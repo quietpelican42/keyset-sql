@@ -1,0 +1,49 @@
+{
+  "name": "keyset-sql",
+  "version": "0.1.0",
+  "description": "Keyset (seek) pagination for raw SQL — WHERE/ORDER BY fragments, params and an opaque cursor, for postgres, mysql and sqlite. No ORM, zero dependencies.",
+  "keywords": [
+    "pagination",
+    "keyset-pagination",
+    "seek-pagination",
+    "cursor-pagination",
+    "sql",
+    "postgres",
+    "mysql",
+    "sqlite"
+  ],
+  "license": "MIT",
+  "author": "__AUTHOR__",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/__GH_OWNER__/keyset-sql.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "demo": "node examples/tie-drop-demo.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build && npm run test:dist",
+    "test:dist": "node --test test/smoke.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.7.0"
+  }
+}

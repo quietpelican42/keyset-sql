@@ -13,10 +13,10 @@
     "sqlite"
   ],
   "license": "MIT",
-  "author": "__AUTHOR__",
+  "author": "kofiadeyemiq",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/__GH_OWNER__/keyset-sql.git"
+    "url": "git+https://github.com/quietpelican42/keyset-sql.git"
   },
   "type": "module",
   "engines": {
